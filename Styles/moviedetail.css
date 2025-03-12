@@ -1,78 +1,93 @@
-.movie-details-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+/* Netflix-inspired dark theme */
+.movie-container {
     font-family: Arial, sans-serif;
-  }
-  
-  .banner {
+    background-color: #141414;
+    color: white;
+    min-height: 100vh;
+}
+
+/* Trailer Section */
+.banner {
     width: 100%;
+    height: 500px;
     position: relative;
-    height: 400px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .trailer-iframe {
+    background: black;
+}
+
+.trailer {
     width: 100%;
     height: 100%;
     border: none;
-  }
-  
-  .movie-info {
-    padding: 20px;
-    background: #1c1c1c;
-    color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
-    margin-top: -40px;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .movie-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .movie-meta {
-    font-size: 16px;
-    opacity: 0.8;
-    margin-bottom: 10px;
-  }
-  
-  .movie-description {
-    font-size: 18px;
-    line-height: 1.6;
-  }
-  
-  .rating {
+}
+
+.no-trailer {
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
-  }
-  
-  .rating span {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.5rem;
+    color: #aaa;
+}
+
+/* Movie Info Section */
+.movie-info {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.title {
+    font-size: 3rem;
     font-weight: bold;
-    background: #ffcc00;
-    color: #000;
+    margin-bottom: 10px;
+}
+
+.release-date {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.tags {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
     padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  @media (max-width: 768px) {
-    .banner {
-      height: 250px;
-    }
-  
-    .movie-title {
-      font-size: 24px;
-    }
-  
-    .movie-description {
-      font-size: 16px;
-    }
-  }
-  
+    font-size: 0.9rem;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.genre {
+    background-color: red;
+}
+
+.language {
+    background-color: blue;
+}
+
+.description {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+/* Ratings */
+.ratings {
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+/* Loading and Error */
+.loading, .error-message {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 50px;
+}
+.error-message {
+    color: red;
+}

@@ -12,7 +12,7 @@ import WatchlistPage from "../pages/WatchList";
 import WatchedPage from "../pages/watched"
 import Navbar from '../Components/navbar';
 import Footer from '../Components/Footer';
-import MovieDetailsPage from "../pages/MovieDetailsPage";
+import MovieDetailsPage from "../pages/Moviedetail";
 const App = () => {
 
   const [token, setToken] = useState(null);
