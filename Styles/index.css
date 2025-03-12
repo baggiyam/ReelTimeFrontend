@@ -1,0 +1,40 @@
+.navbar {
+    background-color: #1976d2; /* Customize with your brand color */
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  .search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-bar {
+    width: 60%;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .auth-buttons a {
+    text-decoration: none;
+  }
+  
+  .auth-buttons button {
+    margin-left: 10px;
+  }
+  

@@ -1,0 +1,41 @@
+/* Footer container */
+#footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  /* Footer content flexbox */
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Left section - Copyright text */
+  .footer-left {
+    font-size: 14px;
+  }
+  
+  /* Right section - Social media icons */
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Social media links */
+  .social-link img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s;
+  }
+  
+  /* Hover effect for social media icons */
+  .social-link:hover img {
+    transform: scale(1.2);
+  }
+  

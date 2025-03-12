@@ -1,0 +1,61 @@
+/* index.css */
+
+/* Navbar Styles */
+#main-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#main-navbar .logo {
+  display: flex;
+  align-items: center;
+}
+
+#main-navbar .logo-image {
+  height: 40px;
+  width: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  width: 200px;
+}
+
+.search-input:focus {
+  outline: none;
+  border: 2px solid #ff4500;
+}
+
