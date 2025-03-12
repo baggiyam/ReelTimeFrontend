@@ -37,9 +37,9 @@ const Home = () => {
                     <h1>{movies[index]?.title || "Loading..."}</h1>
                     <p>{movies[index]?.description || "Discover the latest movies."}</p>
                     {movies.length > 0 && (
-                        <a href={`/movies/${movies[index]._id}`} className="watch-now-btn">
+                        <Link to={`/movie/${movies[index]._id}`} className="watch-now-btn">
                             View Details
-                        </a>
+                        </Link>
                     )}
                 </div>
             </div>
@@ -55,7 +55,7 @@ const Home = () => {
                                     <h3>{movie.title}</h3>
                                     <p>{movie.genre}</p>
                                     <p>{movie.language}</p>
-                                    <Link to={`/movies/${movie._id}`} className="view-details-btn">
+                                    <Link to={`/movie/${movie._id}`} className="view-details-btn">
                                         View Details
                                     </Link>
                                 </div>

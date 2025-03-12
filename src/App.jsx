@@ -12,7 +12,7 @@ import WatchlistPage from "../pages/WatchList";
 import WatchedPage from "../pages/watched"
 import Navbar from '../Components/navbar';
 import Footer from '../Components/Footer';
-
+import MovieDetailsPage from "../pages/MovieDetailsPage";
 const App = () => {
 
   const [token, setToken] = useState(null);
@@ -42,6 +42,7 @@ const App = () => {
         <Route path="/favorites" element={<FavoritesPage token={token} />} />
         <Route path="/watched" element={<WatchedPage token={token} />} />
         <Route path="/addmovie" element={<AddMoviePage />} />
+        <Route path="/movie/:id" element={<MovieDetailsPage />} />
       </Routes>
       <Footer />
     </Router>
