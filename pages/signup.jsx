@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Signup.css";
+import { AuthContext } from "../src/context/AuthContext";
 
-const Signup = ({ setToken }) => {
+const Signup = () => {
+  const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -50,8 +52,8 @@ const Signup = ({ setToken }) => {
       setMessage(res.data.message);
 
       if (res.data.token) {
-        localStorage.setItem("authToken", res.data.token);
-        setToken(res.data.token);
+        login("authToken", res.data.token);
+        
 
         setIsVerifying(false);
         setFormData({

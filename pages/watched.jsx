@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/watched.css";
+import { AuthContext } from "../src/context/AuthContext";
 
-const WatchedPage = ({ token }) => {
+const WatchedPage = () => {
+    const { token } = useContext(AuthContext)
     const [watchedMovies, setWatchedMovies] = useState([]);
 
     useEffect(() => {

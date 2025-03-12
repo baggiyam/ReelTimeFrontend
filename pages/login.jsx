@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TextField, Button, Container, Box, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/Login.css';
+import { AuthContext } from '../src/context/AuthContext';
 
-const LoginPage = ({ setToken }) => {
+const LoginPage = () => {
+  const { login } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -25,10 +27,10 @@ const LoginPage = ({ setToken }) => {
       console.log("This is the token:", response.data.token);
 
       if (response.data.token) {
-        localStorage.setItem('authToken', response.data.token);
-        if (setToken) {
-          setToken(response.data.token);
-        }
+        login(response.data.token);
+
+
+
       } else {
         setErrorMessage("Login successful, but token not received!");
         return;

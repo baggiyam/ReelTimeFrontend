@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Importing pages
@@ -13,35 +13,25 @@ import WatchedPage from "../pages/watched"
 import Navbar from '../Components/navbar';
 import Footer from '../Components/Footer';
 import MovieDetailsPage from "../pages/Moviedetail";
+import { AuthContext } from './context/AuthContext';
+import ProtectedRoute from './context/ProtectedRoute';
 const App = () => {
 
-  const [token, setToken] = useState(null);
-
-  // UseEffect to load token from localStorage on page load
-  useEffect(() => {
-    const storedToken = localStorage.getItem('authToken'); // Consistent key for token
-    if (storedToken) {
-      setToken(storedToken); // Set token in state
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken'); // Remove token correctly from localStorage
-    setToken(null); // Reset token state
-  };
+  const { token, logout } = useContext(AuthContext)
 
   return (
     <Router>
-      <Navbar token={token} handleLogout={handleLogout} />
+      <Navbar />
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/movielist" element={<MovieListPage token={token} />} />
-        <Route path="/watchlist" element={<WatchlistPage token={token} />} />
-        <Route path="/favorites" element={<FavoritesPage token={token} />} />
-        <Route path="/watched" element={<WatchedPage token={token} />} />
-        <Route path="/addmovie" element={<AddMoviePage />} />
+        <Route path="/movielist" element={<ProtectedRoute><MovieListPage /></ProtectedRoute>} />
+        <Route path="/watchlist" element={<ProtectedRoute><WatchlistPage /></ProtectedRoute>} />
+        <Route path="/favorites" element={<ProtectedRoute><FavoritesPage /></ProtectedRoute>} />
+        <Route path="/watched" element={<ProtectedRoute><WatchedPage /></ProtectedRoute>} />
+        <Route path="/addmovie" element={<ProtectedRoute><AddMoviePage /></ProtectedRoute>} />
         <Route path="/movie/:id" element={<MovieDetailsPage />} />
       </Routes>
       <Footer />

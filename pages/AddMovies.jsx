@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import "../Styles/movielist.css"
-const AddMoviePage = ({ token }) => {
+import { AuthContext } from "../src/context/AuthContext";
+const AddMoviePage = () => {
+    const { token } = useContext(AuthContext)
     const [formData, setFormData] = useState({
         title: "",
         description: "",

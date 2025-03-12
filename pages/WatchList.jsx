@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/Watchlist.css";
+import { AuthContext } from "../src/context/AuthContext";
 
-const WatchlistPage = ({ token }) => {
+const WatchlistPage = () => {
+  const { token } = useContext(AuthContext);
   const [watchlist, setWatchlist] = useState([]);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
@@ -11,7 +13,10 @@ const WatchlistPage = ({ token }) => {
     axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/watchlist`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(response => setWatchlist(response.data))
+      .then(response => {
+        setWatchlist(response.data);
+        console.log(response.data); // ✅ Moved inside .then()
+      })
       .catch(() => showPopup("Failed to load watchlist."));
   }, [token]);
 
@@ -26,7 +31,7 @@ const WatchlistPage = ({ token }) => {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
-        setWatchlist(watchlist.filter(movie => movie._id !== movieId));
+        setWatchlist(prevWatchlist => prevWatchlist.filter(movie => movie._id !== movieId));
         showPopup("Removed from Watchlist!");
       })
       .catch(() => showPopup("Action failed. Try again."));

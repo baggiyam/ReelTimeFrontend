@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
 import "../Styles/index.css";
 import logo from "../images/Logo.jpeg";
+import { AuthContext } from "../src/context/AuthContext";
 
-function Navbar({ token, handleLogout }) {
+function Navbar() {
+    const { token, logout } = useContext(AuthContext)
     console.log('Token passed to Navbar:', token);  // Log the token to the console
 
     return (
@@ -68,10 +71,10 @@ function Navbar({ token, handleLogout }) {
                             AddMovies
                         </NavLink>
 
-                        {/* Add Logout button if token exists */}
+
                         <button
                             className="nav-link logout-btn"
-                            onClick={handleLogout}  // Call handleLogout function on click to remove token
+                            onClick={logout}
                         >
                             Logout
                         </button>

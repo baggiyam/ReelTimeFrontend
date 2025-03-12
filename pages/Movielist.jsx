@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../Styles/movielist.css"
+import { AuthContext } from "../src/context/AuthContext";
 
-const MovieList = ({ token }) => {
+const MovieList = () => {
+  const { token } = useContext(AuthContext)
   const [movies, setMovies] = useState([]);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);

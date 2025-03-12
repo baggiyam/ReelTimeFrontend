@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/Favorites.css";
+import { AuthContext } from "../src/context/AuthContext";
 
-const FavoritesPage = ({ token }) => {
+const FavoritesPage = () => {
+  const { token } = useContext(AuthContext)
   const [favorites, setFavorites] = useState([]);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
