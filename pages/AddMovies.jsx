@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../Styles/MovieList.css"; // Using the existing movie list CSS
-
+import "../Styles/movielist.css"
 const AddMoviePage = ({ token }) => {
     const [formData, setFormData] = useState({
         title: "",
