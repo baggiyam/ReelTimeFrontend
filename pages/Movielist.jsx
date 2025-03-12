@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../Styles/MovieList.css";
+import "../Styles/movielist.css"
 
 const MovieList = ({ token }) => {
   const [movies, setMovies] = useState([]);
