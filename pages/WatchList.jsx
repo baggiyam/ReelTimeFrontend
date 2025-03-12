@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../Styles/WatchList.css";
+import "../Styles/Watchlist.css";
 
 const WatchlistPage = ({ token }) => {
   const [watchlist, setWatchlist] = useState([]);
