@@ -5,7 +5,7 @@ import { AuthContext } from "../src/context/AuthContext";
 
 const AddMoviePage = () => {
     const { token } = useContext(AuthContext);
-
+    console.log("token passed to moviedetail", token)
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -40,12 +40,12 @@ const AddMoviePage = () => {
         e.preventDefault();
         try {
             await axios.post(
-                `${import.meta.env.VITE_API_BASE_URL}/api/movies/add`,
+                `${import.meta.env.VITE_API_BASE_URL}/movies/add`,
                 { ...formData, language: formData.language.split(","), genre: formData.genre.split(",") },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "Content-Type": "application/json",
+
                     },
                 }
             );

@@ -1,40 +1,102 @@
-/* Watchlist.css */
-.watchlist-page {
-    text-align: center;
-    padding: 20px;
-    background-color: #121212;
-    color: white;
-  }
-  
-  .movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .movie-card {
-    background: #252525;
-    padding: 15px;
-    border-radius: 10px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  }
-  
-  .movie-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .popup {
-    background: green;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px auto;
-    width: fit-content;
-  }
-  
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: white;
+}
+
+/* Watchlist Page */
+.movie-list-page {
+  padding: 20px;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Movie List */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.movie-card {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+}
+
+.movie-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.movie-info h3 {
+  margin-bottom: 10px;
+}
+
+/* Movie Actions */
+.movie-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Button Styles */
+button {
+  padding: 10px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #777;
+}
+
+.add-btn:hover {
+  background-color: #666;
+}
+
+/* No Movies Available */
+p {
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}

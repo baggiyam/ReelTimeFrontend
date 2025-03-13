@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../src/context/AuthContext";
-import "../Styles/Watchlist.css";
+import "../Styles/movielist.css";
 
 const WatchlistPage = () => {
   const { token } = useContext(AuthContext);
@@ -42,8 +42,40 @@ const WatchlistPage = () => {
     }
   };
 
+  const handleAddToWatched = async (movieId) => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/movies/add-to-watched/${movieId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/movies/watchlist/${movieId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setWatchlist(watchlist.filter((movie) => movie._id !== movieId));
+      showPopup("Movie moved to watched");
+    } catch (error) {
+      showPopup(error.response?.data?.message || "Failed to move movie to watched");
+    }
+  };
+
+  const handleAddToFavorites = async (movieId) => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/movies/add-to-favorites/${movieId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      showPopup("Movie added to favorites");
+    } catch (error) {
+      showPopup(error.response?.data?.message || "Failed to add movie to favorites");
+    }
+  };
+
   return (
-    <div className="watchlist-page">
+    <div className="movie-list-page">
       <h1>Your Watchlist</h1>
       {popupVisible && <div className="popup">{popupMessage}</div>}
       <div className="movie-list">
@@ -51,8 +83,20 @@ const WatchlistPage = () => {
           watchlist.map((movie) => (
             <div key={movie._id} className="movie-card">
               <img src={movie.poster} alt={movie.title} />
-              <h3>{movie.title}</h3>
-              <button onClick={() => handleRemove(movie._id)}>Remove</button>
+              <div className="movie-info">
+                <h3>{movie.title}</h3>
+              </div>
+              <div className="movie-actions">
+                <button onClick={() => handleRemove(movie._id)} className="add-btn">
+                  Remove
+                </button>
+                <button onClick={() => handleAddToWatched(movie._id)} className="add-btn">
+                  Move to Watched
+                </button>
+                <button onClick={() => handleAddToFavorites(movie._id)} className="add-btn">
+                  Add to Favorites
+                </button>
+              </div>
             </div>
           ))
         ) : (

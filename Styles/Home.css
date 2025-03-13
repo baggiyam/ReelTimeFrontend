@@ -1,23 +1,32 @@
-/* Ensure the hero-banner is full width and covers the background */
+/* General body and homepage styling */
 .Homepage {
-    text-align: center;
-    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     background-color: #121212;
     color: white;
-  }
+}
+
+/* Hero Banner Section */
 .hero-banner {
     position: relative;
-    height: 500px;
+    height: 700px; /* Adjust the height for larger screens */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; 
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 10px;
     padding: 20px;
+    margin-top: 60px; 
+    transition: background-size 0.3s ease-in-out;\
+    width: 100%;
 }
 
+/* Hero Content (Title and Button) */
 .hero-content h1 {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -35,6 +44,11 @@
     text-decoration: none;
     border-radius: 5px;
     font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.watch-now-btn:hover {
+    background-color: #f40612;
 }
 
 /* Movie List Section */
@@ -49,7 +63,6 @@
     margin-bottom: 20px;
 }
 
-/* Movie list displayed in a row using flexbox */
 .movie-list {
     display: flex;
     flex-wrap: wrap;
@@ -58,6 +71,7 @@
     margin-top: 20px;
 }
 
+/* Movie Card Styling */
 .movie-card {
     width: 200px;
     height: auto;
@@ -92,6 +106,7 @@
     color: #555;
 }
 
+/* View Details Button inside Movie Card */
 .view-details-btn {
     display: inline-block;
     margin-top: 10px;
@@ -105,4 +120,89 @@
 
 .view-details-btn:hover {
     background-color: #f40612;
+}
+
+/* Watch More Button (Displayed under Movie List) */
+.watch-more-btn {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.watch-more-btn:hover {
+    background: linear-gradient(135deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.watch-more-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .hero-banner {
+        height: 400px;
+        margin-top: 80px; /* Adjust for smaller screens */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .movie-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .watch-more-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-banner {
+        height: 300px;
+        margin-top: 90px; /* Adjust for very small screens */
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .movie-card {
+        width: 100%;
+    }
+
+    .watch-more-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

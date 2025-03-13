@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "../Styles/Home.css";
 import axios from 'axios';
 
 const Home = () => {
     const [movies, setMovies] = useState([]);
     const [index, setIndex] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/`)
             .then((response) => {
                 const movieData = response.data;
-                const sortedMovies = movieData.slice(-5).reverse();
+                const sortedMovies = movieData.slice(-8).reverse();
                 setMovies(sortedMovies);
             })
             .catch((error) => {
@@ -29,9 +30,9 @@ const Home = () => {
     }, [movies]);
 
     return (
-        <div className="Homepage">
+        <div className="Homepage ">
             <div
-                className="hero-banner"
+                className="hero-banner "
                 style={{ backgroundImage: `url(${movies[index]?.poster})` }}>
                 <div className="hero-content">
                     <h1>{movies[index]?.title || "Loading..."}</h1>
@@ -64,8 +65,14 @@ const Home = () => {
                     ) : (
                         <p>Loading movies...</p>
                     )}
+
                 </div>
             </section>
+
+
+            <button onClick={() => navigate("/movielist")} className="watch-more-btn">
+                Watch More
+            </button>
         </div>
     );
 };

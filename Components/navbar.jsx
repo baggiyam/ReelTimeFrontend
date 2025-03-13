@@ -11,8 +11,8 @@ function Navbar() {
     return (
         <nav id="main-navbar">
             <NavLink to="/" className="logo">
-                <img src={logo} alt="Logo" className="logo-image" />
-            </NavLink>
+                < img src={logo} alt="Logo" className="logo-image" />
+            </NavLink >
 
             <div className="nav-links">
                 <NavLink
@@ -65,7 +65,7 @@ function Navbar() {
                             Watched
                         </NavLink>
                         <NavLink
-                            to="/AddMovies"
+                            to="/addmovie"
                             className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
                         >
                             AddMovies
@@ -81,7 +81,7 @@ function Navbar() {
                     </>
                 )}
             </div>
-        </nav>
+        </nav >
     );
 }
 

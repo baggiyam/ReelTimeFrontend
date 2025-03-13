@@ -14,7 +14,6 @@ const Signup = () => {
 
   const [verificationCode, setVerificationCode] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
 
   const navigate = useNavigate();
@@ -24,7 +23,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setMessage("");
 
     try {
@@ -34,15 +32,13 @@ const Signup = () => {
       setIsVerifying(true);
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong!");
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleVerify = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setMessage("");
+
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/verification`, {
         email: formData.email,
@@ -52,24 +48,18 @@ const Signup = () => {
       setMessage(res.data.message);
 
       if (res.data.token) {
-        login("authToken", res.data.token);
-        
-
+        login(res.data.token);
         setIsVerifying(false);
-        setFormData({
-          username: "",
-          email: "",
-          password: "",
-        });
+        setFormData({ username: "", email: "", password: "" });
         setVerificationCode("");
+        navigate("/", { state: { message: "Verification successful!" } });
+        window.location.reload();
       }
-
-
     } catch (error) {
       setMessage(error.response?.data?.message || "Verification failed!");
     }
-    navigate("/", { state: { message: "Verification successful!" } });
-    window.location.reload();
+
+
   };
 
   return (
@@ -106,9 +96,7 @@ const Signup = () => {
               required
               className="input-field"
             />
-            <button type="submit" disabled={loading} className="signup-button">
-              {loading ? "Signing up..." : "Sign Up"}
-            </button>
+            <button type="submit" className="signup-button">Sign Up</button>
           </form>
         ) : (
           <form onSubmit={handleVerify}>
@@ -121,9 +109,7 @@ const Signup = () => {
               required
               className="input-field"
             />
-            <button type="submit" disabled={loading} className="signup-button">
-              {loading ? "Verifying..." : "Verify"}
-            </button>
+            <button type="submit" className="signup-button">Verify</button>
           </form>
         )}
       </div>
