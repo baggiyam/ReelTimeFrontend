@@ -10,6 +10,7 @@ const FavoritesPage = () => {
   const [popupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
+
     axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/favorites`, {
       headers: { Authorization: `Bearer ${token}` }
     })

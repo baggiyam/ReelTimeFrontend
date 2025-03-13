@@ -15,6 +15,7 @@ import Footer from '../Components/Footer';
 import MovieDetailsPage from "../pages/Moviedetail";
 import { AuthContext } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectedRoute';
+import EditMovie from '../pages/Edit'
 const App = () => {
 
   const { token, logout } = useContext(AuthContext)
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/watched" element={<ProtectedRoute><WatchedPage /></ProtectedRoute>} />
         <Route path="/addmovie" element={<ProtectedRoute><AddMoviePage /></ProtectedRoute>} />
         <Route path="/movie/:id" element={<MovieDetailsPage />} />
+        <Route path="/edit/:id" element={<ProtectedRoute role="admin"> <EditMovie /></ProtectedRoute>} />
       </Routes>
       <Footer />
     </Router>

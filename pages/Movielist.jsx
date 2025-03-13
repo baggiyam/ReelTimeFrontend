@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../src/context/AuthContext";
 import "../Styles/movielist.css"
 const MovieList = () => {
-  const { token } = useContext(AuthContext);
+  const { token,role } = useContext(AuthContext);
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [popupMessage, setPopupMessage] = useState("");
@@ -90,6 +90,10 @@ const MovieList = () => {
                 <button onClick={() => handleAddToList(movie._id, "watchlist")} className="add-btn">Add To Watchlist</button>
                 <button onClick={() => handleAddToList(movie._id, "favorites")} className="add-btn">Add to Favorite</button>
                 <button onClick={() => navigate(`/movie/${movie._id}`)} className="view-details-btn">View Details</button>
+        
+                 {role === "admin" && (
+                  <button onClick={() => navigate(`/edit/${movie._id}`)} className="edit-btn">Edit</button>
+                )}
               </div>
             </div>
           </div>
