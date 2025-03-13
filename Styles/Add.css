@@ -1,0 +1,65 @@
+/* AddMovie.css */
+.add-movie-page {
+    text-align: center;
+    padding: 20px;
+    background-color: #121212;
+    color: white;
+}
+
+.movie-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #252525;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.movie-form input,
+.movie-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 16px;
+}
+
+.movie-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.movie-form label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.movie-form button {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+   
+}
+
+.movie-form button:hover {
+    background-color: #b20710;
+}
+
+.popup {
+    background: green;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: fit-content;
+}

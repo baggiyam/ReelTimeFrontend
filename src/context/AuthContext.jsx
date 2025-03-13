@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
         if (storedToken) {
             setToken(storedToken);
         }
-    }, []);
+    }, [token]);
 
     // Login function
     const login = (newToken) => {

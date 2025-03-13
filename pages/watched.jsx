@@ -8,7 +8,7 @@ const WatchedPage = () => {
     const [watchedMovies, setWatchedMovies] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/watched`, {
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/watched`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => setWatchedMovies(response.data))
