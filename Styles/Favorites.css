@@ -1,31 +1,80 @@
-/* Favorites.css */
 .favorites-page {
-    text-align: center;
-    padding: 20px;
-    background-color: #121212;
-    color: white;
-  }
-  
+  text-align: center;
+  padding: 20px;
+  background-color: #121212;
+  color: white;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.movie-card {
+  background: #333;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Responsive Design */
+
+/* Small Mobile (iPhone SE, Galaxy A, etc.) */
+@media (max-width: 480px) {
   .movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+      flex-direction: column;
+      align-items: center;
   }
-  
+
   .movie-card {
-    background: #333;
-    padding: 15px;
-    border-radius: 10px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+      width: 90%;
+      padding: 12px;
   }
-  
+
   .movie-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
+      height: 250px;
   }
-  
+}
+
+/* Medium Mobile (iPhone 12, Galaxy S, Pixel 6, etc.) */
+@media (max-width: 600px) {
+  .movie-card {
+      width: 85%;
+  }
+}
+
+/* Tablets (iPads, Surface Pro, etc.) */
+@media (max-width: 900px) {
+  .movie-card {
+      width: 200px;
+  }
+
+  .movie-card img {
+      height: 280px;
+  }
+}
+
+/* Laptops & Small Desktops */
+@media (max-width: 1200px) {
+  .movie-card {
+      width: 220px;
+  }
+}
+
+/* Large Desktops & Widescreens */
+@media (min-width: 1201px) {
+  .movie-card {
+      width: 250px;
+  }
+}

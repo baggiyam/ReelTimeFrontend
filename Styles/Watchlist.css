@@ -100,3 +100,43 @@ p {
   font-size: 18px;
   color: white;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .movie-card {
+    max-width: 200px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .movie-card {
+    max-width: 180px;
+  }
+
+  button {
+    font-size: 11px;
+    padding: 6px;
+  }
+}

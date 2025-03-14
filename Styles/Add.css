@@ -1,4 +1,3 @@
-/* AddMovie.css */
 .add-movie-page {
     text-align: center;
     padding: 20px;
@@ -9,6 +8,7 @@
 .movie-form {
     display: flex;
     flex-direction: column;
+    width: 90%;
     max-width: 500px;
     margin: 0 auto;
     background: #252525;
@@ -20,7 +20,7 @@
 .movie-form input,
 .movie-form textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border-radius: 5px;
     border: none;
@@ -48,7 +48,7 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-   
+    transition: background 0.3s ease;
 }
 
 .movie-form button:hover {
@@ -62,4 +62,78 @@
     border-radius: 5px;
     margin: 10px auto;
     width: fit-content;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .movie-form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .movie-form input,
+    .movie-form textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .movie-form button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .popup {
+        width: 90%;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-form {
+        width: 90%;
+        padding: 16px;
+    }
+
+    .movie-form input,
+    .movie-form textarea {
+        font-size: 15px;
+        padding: 11px;
+    }
+
+    .movie-form button {
+        font-size: 15px;
+        padding: 11px;
+    }
+}
+
+@media (max-width: 900px) {
+    .movie-form {
+        width: 80%;
+        max-width: 450px;
+    }
+
+    .movie-form input,
+    .movie-form textarea {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .movie-form button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .movie-form {
+        width: 70%;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .movie-form {
+        width: 50%;
+        max-width: 600px;
+    }
 }

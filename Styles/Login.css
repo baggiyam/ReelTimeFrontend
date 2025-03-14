@@ -1,49 +1,79 @@
-
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    padding: 20px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #f4f6f9;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-field input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.login-button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+  .login-container {
+      width: 90%;
+      padding: 15px;
   }
-  
 
   .login-heading {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+      font-size: 1.3rem;
   }
-  
-
-  .login-field {
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  
 
   .login-button {
-    margin-top: 20px;
-    width: 100%;
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+      font-size: 14px;
+      padding: 10px;
   }
-  
-  .login-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Error message styling */
-  .error-message {
-    color: #ff0000;
-    margin-top: 10px;
-  }
-  
+}
