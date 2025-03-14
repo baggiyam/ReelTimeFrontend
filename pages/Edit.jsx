@@ -8,6 +8,7 @@ const EditMovie = () => {
     const { token } = useContext(AuthContext);
     const { id } = useParams();
     const navigate = useNavigate();
+
     const [movie, setMovie] = useState({
         title: "",
         description: "",
@@ -20,13 +21,28 @@ const EditMovie = () => {
         trailer: "",
         suggestedToAll: false,
     });
+
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        axios
-            .get(`${import.meta.env.VITE_API_BASE_URL}/movies/${id}`)
-            .then((response) => setMovie(response.data))
-            .catch(() => setError("Failed to load movie details"));
+        const fetchMovie = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/${id}`);
+                if (response.data) {
+                    setMovie({
+                        ...response.data,
+                        releaseDate: response.data.releaseDate ? response.data.releaseDate.split("T")[0] : "",
+                    });
+                    setLoading(false);
+                }
+            } catch (err) {
+                setError("Failed to load movie details");
+                setLoading(false);
+            }
+        };
+
+        fetchMovie();
     }, [id]);
 
     const handleChange = (e) => {
@@ -45,7 +61,7 @@ const EditMovie = () => {
                 movie,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-            navigate("/");
+            navigate("/movielist");
         } catch (err) {
             setError("Failed to update movie");
         }
@@ -55,22 +71,56 @@ const EditMovie = () => {
         <div className="add-movie-page">
             <h2>Edit Movie</h2>
             {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit} className="movie-form">
-                <label>Title: <input type="text" name="title" value={movie.title} onChange={handleChange} required /></label>
-                <label>Description: <textarea name="description" value={movie.description} onChange={handleChange} required /></label>
-                <label>Release Date: <input type="date" name="releaseDate" value={movie.releaseDate} onChange={handleChange} required /></label>
-                <label>Language: <input type="text" name="language" value={movie.language} onChange={handleChange} required /></label>
-                <label>Genre: <input type="text" name="genre" value={movie.genre} onChange={handleChange} required /></label>
-                <label>IMDB Rating: <input type="number" name="imdbRating" value={movie.imdbRating} onChange={handleChange} step="0.1" required /></label>
-                <label>Google Rating: <input type="number" name="googleRating" value={movie.googleRating} onChange={handleChange} step="0.1" required /></label>
-                <label>Poster URL: <input type="text" name="poster" value={movie.poster} onChange={handleChange} required /></label>
-                <label>Trailer URL: <input type="text" name="trailer" value={movie.trailer} onChange={handleChange} required /></label>
-                <label>
-                    <input type="checkbox" name="suggestedToAll" checked={movie.suggestedToAll} onChange={handleChange} />
-                    Suggest to All
-                </label>
-                <button type="submit">Update Movie</button>
-            </form>
+            {loading ? (
+                <p>Loading movie details...</p>
+            ) : (
+                <form onSubmit={handleSubmit} className="movie-form">
+                    <fieldset disabled={loading}>
+                        <label>Title:
+                            <input type="text" name="title" value={movie.title} onChange={handleChange} required />
+                        </label>
+
+                        <label>Description:
+                            <textarea name="description" value={movie.description} onChange={handleChange} required />
+                        </label>
+
+                        <label>Release Date:
+                            <input type="date" name="releaseDate" value={movie.releaseDate} onChange={handleChange} required />
+                        </label>
+
+                        <label>Language:
+                            <input type="text" name="language" value={movie.language} onChange={handleChange} required />
+                        </label>
+
+                        <label>Genre:
+                            <input type="text" name="genre" value={movie.genre} onChange={handleChange} required />
+                        </label>
+
+                        <label>IMDB Rating:
+                            <input type="number" name="imdbRating" value={movie.imdbRating} onChange={handleChange} step="0.1" required />
+                        </label>
+
+                        <label>Google Rating:
+                            <input type="number" name="googleRating" value={movie.googleRating} onChange={handleChange} step="0.1" required />
+                        </label>
+
+                        <label>Poster URL:
+                            <input type="text" name="poster" value={movie.poster} onChange={handleChange} required />
+                        </label>
+
+                        <label>Trailer URL:
+                            <input type="text" name="trailer" value={movie.trailer} onChange={handleChange} required />
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="suggestedToAll" checked={movie.suggestedToAll} onChange={handleChange} />
+                            Suggest to All
+                        </label>
+
+                        <button type="submit">Update Movie</button>
+                    </fieldset>
+                </form>
+            )}
         </div>
     );
 };
