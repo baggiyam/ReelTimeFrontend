@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../src/context/AuthContext";
-import "../Styles/movielist.css"
+import "../Styles/movielist.css";
+
 const MovieList = () => {
   const { token, role } = useContext(AuthContext);
   const [movies, setMovies] = useState([]);
@@ -40,18 +41,22 @@ const MovieList = () => {
     }
   };
 
-  // Extract unique languages & genres
-  const languages = ["All", ...new Set(movies.map(movie => movie.language))];
-  const genres = ["All", ...new Set(movies.map(movie => movie.genre))];
+  const defaultLanguages = ["English", "Tamil", "Hindi", "Malayalam", "Korean"];
+  const defaultGenres = ["Action", "Comedy", "Drama", "Horror", "Thriller"];
 
-  // Filter movies based on language & genre
+  const movieLanguages = Array.from(new Set(movies.flatMap(movie => movie.language || [])));
+  const movieGenres = Array.from(new Set(movies.flatMap(movie => movie.genre || [])));
+
+  const languages = ["All", ...new Set([...defaultLanguages, ...movieLanguages])];
+  const genres = ["All", ...new Set([...defaultGenres, ...movieGenres])];
+
   const handleFilterChange = () => {
     let filtered = movies;
     if (selectedLanguage !== "All") {
-      filtered = filtered.filter(movie => movie.language === selectedLanguage);
+      filtered = filtered.filter(movie => movie.language.includes(selectedLanguage));
     }
     if (selectedGenre !== "All") {
-      filtered = filtered.filter(movie => movie.genre === selectedGenre);
+      filtered = filtered.filter(movie => movie.genre.includes(selectedGenre));
     }
     setFilteredMovies(filtered);
   };
@@ -65,7 +70,6 @@ const MovieList = () => {
       <h1>Movies</h1>
       {popupVisible && <div className="popup">{popupMessage}</div>}
 
-      {/* Filter Section */}
       <div className="filter-container">
         <label htmlFor="language-filter">Language: </label>
         <select id="language-filter" value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
@@ -84,13 +88,12 @@ const MovieList = () => {
             <img src={movie.poster} alt={movie.title} />
             <div className="movie-info">
               <h3>{movie.title}</h3>
-              <p><strong>Language:</strong> {movie.language}</p>
-              <p><strong>Genre:</strong> {movie.genre}</p>
+              <p><strong>Language:</strong> {movie.language.join(", ")}</p>
+              <p><strong>Genre:</strong> {movie.genre.join(", ")}</p>
               <div className="button-group">
                 <button onClick={() => handleAddToList(movie._id, "watchlist")} className="add-btn">Add To Watchlist</button>
                 <button onClick={() => handleAddToList(movie._id, "favorites")} className="add-btn">Add to Favorite</button>
                 <button onClick={() => navigate(`/movie/${movie._id}`)} className="view-details-btn">View Details</button>
-
                 {role === "admin" && (
                   <button onClick={() => navigate(`/edit/${movie._id}`)} className="edit-btn">Edit</button>
                 )}
