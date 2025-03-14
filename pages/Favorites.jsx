@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/Favorites.css";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../src/context/AuthContext";
 
 const FavoritesPage = () => {
@@ -8,7 +9,7 @@ const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
 
     axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/favorites`, {
@@ -45,7 +46,9 @@ const FavoritesPage = () => {
             <img src={movie.poster} alt={movie.title} />
             <div className="movie-info">
               <h3>{movie.title}</h3>
-              <button onClick={() => removeFromFavorites(movie._id)}>Remove</button>
+              <p><strong>Language:</strong> {movie.language}</p>
+              <p><strong>Genre:</strong> {movie.genre}</p>
+              <button onClick={() => navigate(`/movie/${movie._id}`)} className="view-details-btn">View Details</button>
             </div>
           </div>
         )) : <p>No favorite movies yet.</p>}
