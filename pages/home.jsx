@@ -28,11 +28,7 @@ const Home = () => {
             return () => clearInterval(interval);
         }
     }, [movies]);
-    const getYouTubeEmbedUrl = (url) => {
-        if (!url) return "";
-        const videoId = url.split("v=")[1]?.split("&")[0]; // Extract video ID
-        return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}` : "";
-    };
+
     return (
         <div className="Homepage ">
             <div

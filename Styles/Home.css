@@ -16,7 +16,7 @@
 .hero-banner {
     position: relative;
     height: 700px;
-    background-size: cover;
+    background-size: contain;
     background-attachment: fixed;
     color: white;
     display: flex;
