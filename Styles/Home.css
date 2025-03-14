@@ -1,11 +1,11 @@
 .hero-banner {
     position: relative;
-    height: 700px;
     width: 100%;
+    height: 700px;
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: contain; /* Ensures full image is visible */
-    background-color: black; /* Fallback for transparency */
+    background-size: contain; /* Changed from 'cover' to 'contain' */
+    background-color: black; /* Fallback color */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,11 +15,10 @@
     transition: background-size 0.3s ease-in-out;
 }
 
-/* Responsive Fixes */
 @media screen and (max-width: 1024px) {
     .hero-banner {
         height: 600px;
-        background-size: cover; /* Adjusts for smaller screens */
+        background-size: cover; /* Adjusted for smaller screens */
     }
 }
 
