@@ -1,234 +1,36 @@
-.Homepage {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main-content {
-    flex: 1;
-}
-
 .hero-banner {
     position: relative;
     height: 700px;
-    background-size: contain;
-    background-attachment: fixed;
-    color: white;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain; /* Ensures full image is visible */
+    background-color: black; /* Fallback for transparency */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
     padding: 20px;
     margin-top: 60px;
     transition: background-size 0.3s ease-in-out;
-    width: 100%;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-.watch-now-btn {
-    background-color: #e50914;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.watch-now-btn:hover {
-    background-color: #f40612;
-}
-
-.movie-list-section {
-    padding: 20px;
-    background-color: #f9f9f9;
-}
-
-.movie-list-section h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.movie-card {
-    width: 200px;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    text-align: center;
-}
-
-.movie-card:hover {
-    transform: translateY(-10px);
-}
-
-.movie-card img {
-    width: 100%;
-    height: auto;
-}
-
-.movie-card-info {
-    padding: 10px;
-}
-
-.movie-card-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.movie-card-info p {
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.view-details-btn {
-    display: inline-block;
-    margin-top: 10px;
-    background-color: #e50914;
-    color: white;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-}
-
-.view-details-btn:hover {
-    background-color: #f40612;
-}
-
-.watch-more-btn {
-    display: block;
-    width: fit-content;
-    margin: 20px auto;
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.watch-more-btn:hover {
-    background: linear-gradient(135deg, #feb47b, #ff7e5f);
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.watch-more-btn:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-#footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-}
-
-/* Responsive Design */
+/* Responsive Fixes */
 @media screen and (max-width: 1024px) {
     .hero-banner {
         height: 600px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.8rem;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
-    .movie-card {
-        width: 180px;
+        background-size: cover; /* Adjusts for smaller screens */
     }
 }
 
 @media screen and (max-width: 768px) {
     .hero-banner {
         height: 400px;
-        margin-top: 80px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .movie-list {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .movie-card {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
-    .watch-more-btn {
-        font-size: 16px;
-        padding: 10px 20px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .hero-banner {
         height: 300px;
-        margin-top: 90px;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 0.9rem;
-    }
-
-    .movie-card {
-        width: 100%;
-    }
-
-    .watch-more-btn {
-        font-size: 14px;
-        padding: 8px 16px;
     }
 }
