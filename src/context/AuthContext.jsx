@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
         setToken(null);
         setUser(null);
         setRole(null);
-        setIsAdmin(false); // Reset isAdmin on logout
+        setIsAdmin(false); 
     };
 
     return (

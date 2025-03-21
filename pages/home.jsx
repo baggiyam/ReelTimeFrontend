@@ -33,7 +33,7 @@ const Home = () => {
         <div className="Homepage ">
             <div
                 className="hero-banner "
-                style={{ backgroundImage: `url(${movies[index]?.poster})` }}>
+                style={{ backgroundImage: `url(${movies[index]?.backdrop})` }}>
                 <div className="hero-content">
                     <h1>{movies[index]?.title || "Loading..."}</h1>
                     <p>{movies[index]?.description || "Discover the latest movies."}</p>

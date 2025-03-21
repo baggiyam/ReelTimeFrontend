@@ -1,32 +1,58 @@
-#main-navbar {
+/* Navbar Container */
+.navbar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #333;
+  background-color: black;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
   z-index: 1000;
-  padding: 0 15px;
+  padding: 0 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#main-navbar .logo {
+/* Logo Styling */
+.logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#main-navbar .logo-image {
+.logo-image {
   height: 50px;
   width: 50px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
+/* Burger Menu Button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 25px;
+  right: 20px; /* Icon on right */
+  top: 18px;
+  z-index: 1100;
+}
+
+.bm-burger-bars {
+  background: white;
+}
+
+/* Burger Menu Panel */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.1em;
+}
+
+/* Menu Items */
+.bm-item {
+  display: block;
+  color: white;
+  margin-bottom: 10px;
+  text-decoration: none;
 }
 
 .nav-link {
@@ -46,24 +72,6 @@
   color: #ff4500;
 }
 
-.search-bar {
-  display: flex;
-  align-items: center;
-}
-
-.search-input {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  font-size: 14px;
-  width: 200px;
-}
-
-.search-input:focus {
-  outline: none;
-  border: 2px solid #ff4500;
-}
-
 .logout-btn {
   color: white;
   background: transparent;
@@ -76,57 +84,36 @@
   color: #ff4500;
 }
 
-/* Ensure content doesn't overlap the fixed navbar */
+/* Prevent content overlap */
 body {
-  margin-top: 60px;
-  padding: 0;
+  margin: 0;
+  padding-top: 60px; /* space for fixed navbar */
 }
 
-/* Responsive Design */
+/* Close button container */
+.bm-cross-button {
+  height: 30px;
+  width: 30px;
+  right: 20px ;
+  top: 20px ;
+}
+
+/* Close button (X) lines */
+.bm-cross {
+  background: white; /* Change color */
+  height: 3px ;
+}
+
+/* Optionally: Add hover effect */
+.bm-cross-button:hover .bm-cross {
+  background: #ff4500;
+}
+
+
+/* Responsive */
 @media screen and (max-width: 768px) {
-  #main-navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: 10px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
-    padding: 10px 0;
-  }
-
-  .nav-link {
-    font-size: 14px;
-    width: 100%;
-    text-align: left;
-    padding: 10px 15px;
-  }
-
-  .search-input {
-    width: 100%;
-    max-width: 250px;
-  }
-
   .logo-image {
     height: 40px;
     width: 40px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .nav-links {
-    gap: 10px;
-  }
-
-  .nav-link {
-    font-size: 12px;
-  }
-
-  .search-input {
-    width: 100%;
-    max-width: 180px;
   }
 }
