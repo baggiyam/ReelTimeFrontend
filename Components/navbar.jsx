@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React, { useContext } from "react";
 import "../Styles/index.css";
 import logo from "../images/Logo.jpeg";
@@ -8,10 +8,18 @@ import { slide as Menu } from 'react-burger-menu';
 
 function Navbar() {
     const navigate = useNavigate();
-    const { token, logout } = useContext(AuthContext)
-    console.log('Token passed to Navbar:', token);
-    const [open, setOpen] = useState(false)
+    const { token, logout, username } = useContext(AuthContext);
+    const [open, setOpen] = useState(false);
+    const [profileImage, setProfileImage] = useState(null);
+    const fileInputRef = useRef(null);
 
+    // ✅ Load saved image from localStorage on mount
+    useEffect(() => {
+        const savedImage = localStorage.getItem('profileImage');
+        if (savedImage) {
+            setProfileImage(savedImage);
+        }
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,7 +30,6 @@ function Navbar() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -35,6 +42,7 @@ function Navbar() {
             document.removeEventListener("click", handleClickOutside);
         };
     }, []);
+
     const handleStateChange = (state) => {
         setOpen(state.isOpen);
     };
@@ -42,10 +50,28 @@ function Navbar() {
     const closeMenu = () => {
         setOpen(false);
     };
+
     const handleLogout = () => {
-        logout(); // Clear token
-        closeMenu(); // Close burger menu
+        logout();
+        closeMenu();
         navigate("/", { state: { message: "Successfully logged out" } });
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfileImage(reader.result);
+                // ✅ Save to localStorage
+                localStorage.setItem('profileImage', reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const triggerFileInput = () => {
+        fileInputRef.current.click();
     };
 
     return (
@@ -59,68 +85,44 @@ function Navbar() {
                 onStateChange={handleStateChange}
                 onClose={closeMenu}
             >
+                {token && username && (
+                    <div className="profile-section">
+                        <div className="profile-pic-container" onClick={triggerFileInput}>
+                            {profileImage ? (
+                                <img src={profileImage} alt="Profile" className="profile-pic" />
+                            ) : (
+                                <div className="profile-placeholder">Upload Profile Pic</div>
+                            )}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                ref={fileInputRef}
+                                style={{ display: "none" }}
+                                onChange={handleImageChange}
+                            />
+                        </div>
+                        <div className="welcome-message">
+                            Welcome, {username}!
+                        </div>
+                    </div>
+                )}
+
                 <div className="nav-links">
-                    <NavLink
-                        to="/"
-                        className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                    >
-                        Home
-                    </NavLink>
-                    {/* Conditionally render Login and Signup if no token, otherwise render Movie List and others */}
+                    <NavLink to="/" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Home</NavLink>
+
                     {!token ? (
                         <>
-                            <NavLink
-                                to="/login"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                Login
-                            </NavLink>
-                            <NavLink
-                                to="/signup"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                Signup
-                            </NavLink>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Login</NavLink>
+                            <NavLink to="/signup" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Signup</NavLink>
                         </>
                     ) : (
                         <>
-                            <NavLink
-                                to="/movielist"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                MovieList
-                            </NavLink>
-                            <NavLink
-                                to="/watchlist"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                Watchlist
-                            </NavLink>
-                            <NavLink
-                                to="/favorites"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                Favorites
-                            </NavLink>
-                            <NavLink
-                                to="/watched"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                Watched
-                            </NavLink>
-                            <NavLink
-                                to="/addmovie"
-                                className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}
-                            >
-                                AddMovies
-                            </NavLink>
-                            <button
-                                className="nav-link logout-btn"
-                                onClick={handleLogout}
-
-                            >
-                                Logout
-                            </button>
+                            <NavLink to="/movielist" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>MovieList</NavLink>
+                            <NavLink to="/watchlist" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Watchlist</NavLink>
+                            <NavLink to="/favorites" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Favorites</NavLink>
+                            <NavLink to="/watched" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Watched</NavLink>
+                            <NavLink to="/addmovie" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>AddMovies</NavLink>
+                            <button className="nav-link logout-btn" onClick={handleLogout}>Logout</button>
                         </>
                     )}
                 </div>

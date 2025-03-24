@@ -109,7 +109,47 @@ body {
   background: #ff4500;
 }
 
+.welcome-message {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  padding: 12px 0;
+  text-align: center;
+  border-bottom: 1px solid #555; /* subtle separator */
+}
+.welcome-message {
+  margin-bottom: 10px;
+}
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
 
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.profile-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+}
+
+.welcome-message {
+  font-weight: bold;
+  color: #fff;
+}
 /* Responsive */
 @media screen and (max-width: 768px) {
   .logo-image {

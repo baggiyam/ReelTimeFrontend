@@ -60,6 +60,15 @@
   font-size: 14px;
   text-align: center;
 }
+.forgot-link {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
 
 /* Responsive Design */
 @media screen and (max-width: 480px) {

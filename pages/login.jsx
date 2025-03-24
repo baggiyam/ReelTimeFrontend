@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../Styles/Login.css";
-import { AuthContext } from "../src/context/AuthContext"; // Keeping this unchanged
+import { AuthContext } from "../src/context/AuthContext";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -30,7 +30,6 @@ const Login = () => {
       const errorMsg = error.response?.data?.message || "Login failed!";
       setMessage(errorMsg);
 
-      // Show verification popup if email is not verified
       if (errorMsg.includes("verify your email")) {
         setShowVerificationPopup(true);
       }
@@ -49,7 +48,7 @@ const Login = () => {
       if (res.data.token) {
         login(res.data.token);
         navigate("/");
-        setShowVerificationPopup(false); // Only close the popup on success
+        setShowVerificationPopup(false);
       } else {
         setPopupMessage("Verification failed! Please check your code.");
       }
@@ -62,17 +61,14 @@ const Login = () => {
 
   const handleResendCode = async () => {
     setPopupMessage("Resending code...");
-    console.log("Sending resend request for:", formData.email);
 
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/resend-code`, {
         email: formData.email,
       });
 
-      console.log("Resend response:", res.data);
       setPopupMessage(res.data.message || "Verification code resent!");
     } catch (error) {
-      console.error("Resend error:", error.response?.data || error.message);
       setPopupMessage(
         error.response?.data?.message || "Failed to resend code!"
       );
@@ -103,6 +99,14 @@ const Login = () => {
             required
             className="input-field"
           />
+
+          {/* Forgot Password Link */}
+          <div style={{ textAlign: "right", marginBottom: "10px" }}>
+            <Link to="/forgot-password" className="forgot-link">
+              Forgot Password?
+            </Link>
+          </div>
+
           <button type="submit" className="login-button">Login</button>
         </form>
       </div>

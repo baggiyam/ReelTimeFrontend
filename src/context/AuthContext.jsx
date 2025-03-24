@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [role, setRole] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [username, setUsername] = useState(null);
 
     const fetchUserData = async () => {
         try {
@@ -34,7 +35,8 @@ const AuthProvider = ({ children }) => {
                 const decoded = jwtDecode(storedToken);
                 setUser({ id: decoded.userId, email: decoded.email });
                 setRole(decoded.role);
-                setIsAdmin(decoded.role === "admin"); // Added isAdmin state update
+                setIsAdmin(decoded.role === "admin");
+                setUsername(decoded.username);
             } catch (error) {
                 console.error("Invalid token", error);
                 logout();
@@ -54,11 +56,21 @@ const AuthProvider = ({ children }) => {
         setToken(null);
         setUser(null);
         setRole(null);
-        setIsAdmin(false); 
+        setIsAdmin(false);
     };
+    const [profileImage, setProfileImage] = useState("");
 
+    const fetchUserDetails = async () => {
+        try {
+            const res = await axios.get('/user/details', { headers: { Authorization: token } });
+            setUsername(res.data.username);
+            setProfileImage(res.data.profileImage); // <-- Add this
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
-        <AuthContext.Provider value={{ token, user, role, isAdmin, login, logout }}>
+        <AuthContext.Provider value={{ token, user, role, isAdmin, login, logout, username, profileImage }}>
             {children}
         </AuthContext.Provider>
     );

@@ -30,13 +30,17 @@ export default function MovieDetails() {
             {/* Trailer Section */}
             <div className="banner">
                 {movie.trailer ? (
-                    <iframe
-                        className="trailer"
-                        src={movie.trailer.replace("watch?v=", "embed/")}
-                        title="Movie Trailer"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                    movie.trailer.includes("youtube.com") || movie.trailer.includes("vimeo.com") ? (
+                        <iframe
+                            className="trailer"
+                            src={movie.trailer.replace("watch?v=", "embed/")}
+                            title="Movie Trailer"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                    ) : (
+                        <img className="trailer-image" src={movie.trailer} alt="Movie Banner" />
+                    )
                 ) : (
                     <div className="no-trailer">No Trailer Available</div>
                 )}

@@ -82,13 +82,20 @@ const AddMoviePage = () => {
 
     // Handle Fetch Again
     const handleFetchAgain = () => {
-        if (!formData.title) {
-            showPopup("Please enter a movie title first.");
-            return;
-        }
-        setIsFetched(false); // Reset to allow refetching
+        setFormData({
+            ...formData,
+            description: "",
+            releaseDate: "",
+            language: "",
+            genre: "",
+            imdbRating: "",
+            poster: "",
+            trailer: "",
+            backdrop: "",
+            voteCount: "",
+        });
+        setIsFetched(false);
         setFetchError(false);
-        handleFetchMovie(); // Call fetch again
     };
 
     // Submit Handler
