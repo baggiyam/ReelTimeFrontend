@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../src/context/AuthContext";
-import "../Styles/suggestedmovies.css";
+import "../Styles/suggestedmovies.css"
 
 const SuggestedMoviesPage = () => {
     const { token } = useContext(AuthContext);
