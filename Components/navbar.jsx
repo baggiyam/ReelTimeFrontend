@@ -13,7 +13,7 @@ function Navbar() {
     const [profileImage, setProfileImage] = useState(null);
     const fileInputRef = useRef(null);
 
-    // ✅ Load saved image from localStorage on mount
+
     useEffect(() => {
         const savedImage = localStorage.getItem('profileImage');
         if (savedImage) {
@@ -63,7 +63,7 @@ function Navbar() {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setProfileImage(reader.result);
-                // ✅ Save to localStorage
+                // Save to localStorage
                 localStorage.setItem('profileImage', reader.result);
             };
             reader.readAsDataURL(file);
@@ -122,7 +122,12 @@ function Navbar() {
                             <NavLink to="/favorites" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Favorites</NavLink>
                             <NavLink to="/watched" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Watched</NavLink>
                             <NavLink to="/addmovie" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>AddMovies</NavLink>
+                            <NavLink to="/friend-requests" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Friend Request</NavLink>
+                            <NavLink to="/suggested" className={({ isActive }) => (isActive ? "nav-link active-link" : "nav-link")}>Suggested Movies</NavLink>
+
                             <button className="nav-link logout-btn" onClick={handleLogout}>Logout</button>
+
+
                         </>
                     )}
                 </div>

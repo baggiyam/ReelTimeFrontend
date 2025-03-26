@@ -44,6 +44,21 @@ const Home = () => {
                     )}
                 </div>
             </div>
+            < section className="app-features ">
+                <div className="intro-text">
+                    <h1>Welcome to Reeltime</h1>
+                    <p>Your personal movie management platform. Discover, organize, and share your favorite movies with friends.</p>
+                </div>
+                <div className="feature">
+                    <h3>Manage Your Movies</h3>
+                    <p>Organize your watchlist, favorites, and watched movies effortlessly.</p>
+                </div>
+                <div className="feature">
+                    <h3>Connect with Friends</h3>
+                    <p>Share movie suggestions to your friends by adding them to your friendlist.</p>
+                </div>
+
+            </section>
 
             <section className="movie-list-section Homepage">
                 <h2>Latest Movies</h2>
@@ -54,8 +69,8 @@ const Home = () => {
                                 <img src={movie.poster} alt={movie.title} className="movie-poster" />
                                 <div className="movie-card-info">
                                     <h3>{movie.title}</h3>
-                                    <p>{movie.genre}</p>
-                                    <p>{movie.language}</p>
+                                    < label>Language: <p>{movie.genre}</p> </label>
+                                    <lable>genre: <p>{movie.genre}</p></lable>
                                     <Link to={`/movie/${movie._id}`} className="view-details-btn">
                                         View Details
                                     </Link>

@@ -3,8 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../src/context/AuthContext";
 import "../Styles/movielist.css";
+import SuggestMoviePopup from "../Components/SuggestMoviePopup";
 
-const MovieList = () => {
+const MovieList = ({ friendId }) => {
   const { token, role } = useContext(AuthContext);
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -13,6 +14,8 @@ const MovieList = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("All");
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [showSuggestPopupForMovie, setShowSuggestPopupForMovie] = useState(null);
+  // State to track which movie is selected for suggestion
 
   const navigate = useNavigate();
 
@@ -57,7 +60,7 @@ const MovieList = () => {
       if (response.status === 200) {
         alert("Movie deleted successfully!");
         // Optionally, refresh the page or update the state dynamically
-        window.location.reload();
+
       }
     } catch (error) {
       console.error("Error deleting movie:", error);
@@ -134,6 +137,14 @@ const MovieList = () => {
                   <button onClick={() => handleAddToList(movie._id, "watchlist")} className="add-btn">Add To Watchlist</button>
                   <button onClick={() => handleAddToList(movie._id, "favorites")} className="add-btn">Add to Favorite</button>
                   <button onClick={() => navigate(`/movie/${movie._id}`)} className="view-details-btn">View Details</button>
+
+                  {/* Suggest Movie Button */}
+                  <button
+                    onClick={() => setShowSuggestPopupForMovie(movie._id)}
+                    className="suggest-btn">
+                    Suggest to Friend
+                  </button>
+
                   {role === "admin" && (
                     <>
                       <button
@@ -152,6 +163,14 @@ const MovieList = () => {
                   )}
                 </div>
               </div>
+
+              {/* Conditionally render SuggestMoviePopup for the selected movie */}
+              {showSuggestPopupForMovie === movie._id && (
+                <SuggestMoviePopup
+                  movieId={movie._id}
+                  onClose={() => setShowSuggestPopupForMovie(null)} // Close the popup by setting to null
+                />
+              )}
             </div>
           ))
         ) : (

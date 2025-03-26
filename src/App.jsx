@@ -17,6 +17,10 @@ import { AuthContext } from './context/AuthContext';
 import ProtectedRoute from './context/ProtectedRoute';
 import EditMovie from '../pages/Edit'
 import ForgotPassword from '../pages/Forgotpassword';
+
+import FriendRequestspage from '../pages/FriendRequestspage';
+import SuggestedMoviesPage from '../pages/SuggestedMoviesPage';
+
 const App = () => {
 
   const { token, logout } = useContext(AuthContext)
@@ -37,6 +41,9 @@ const App = () => {
         <Route path="/movie/:id" element={<MovieDetailsPage />} />
         <Route path="/edit/:id" element={<ProtectedRoute role="admin"> <EditMovie /></ProtectedRoute>} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/friend-requests" element={<ProtectedRoute><FriendRequestspage /></ProtectedRoute>} />
+        <Route path="/suggested" element={<SuggestedMoviesPage />} />
+
       </Routes>
       <Footer />
     </Router>
