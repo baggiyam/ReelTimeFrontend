@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../src/context/AuthContext";
-import "../Styles/FriendRequestsPage.css";
+import "../Styles/FriendRequestspage.css";
 
 const FriendRequestPage = () => {
     const { token } = useContext(AuthContext);
