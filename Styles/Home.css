@@ -53,6 +53,7 @@ body {
 .hero-content p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: whitesmoke;
 }
 
 .watch-now-btn {
@@ -106,7 +107,7 @@ body {
     color: #777;
 }
 
-/* Movie List Section */
+
 .movie-list-section {
     padding: 40px 0;
     background-color: #fff;
