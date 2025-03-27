@@ -69,7 +69,7 @@ const Home = () => {
                                 <img src={movie.poster} alt={movie.title} className="movie-poster" />
                                 <div className="movie-card-info">
                                     <h3>{movie.title}</h3>
-                                    < label>Language: <p>{movie.genre}</p> </label>
+                                    < label>Language: <p>{movie.language}</p> </label>
                                     <lable>genre: <p>{movie.genre}</p></lable>
                                     <Link to={`/movie/${movie._id}`} className="view-details-btn">
                                         View Details
