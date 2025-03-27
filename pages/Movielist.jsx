@@ -59,13 +59,14 @@ const MovieList = ({ friendId }) => {
       // Check if deletion was successful
       if (response.status === 200) {
         alert("Movie deleted successfully!");
-        // Optionally, refresh the page or update the state dynamically
+        window.location.reload()
 
       }
     } catch (error) {
       console.error("Error deleting movie:", error);
       alert("Failed to delete the movie. Please try again.");
     }
+
   };
 
   const movieLanguages = Array.from(new Set(movies.flatMap(movie => movie.language || [])));

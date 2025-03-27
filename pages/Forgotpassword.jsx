@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../Styles/ForgotPassword.css"; // style file
+import "../Styles/ForgotPassword.css"; 
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/forgot-password`, { email });
       setMessage(res.data.message);
-      setIsCodeSent(true); // Move to next step
+      setIsCodeSent(true); 
     } catch (err) {
       setMessage(err.response?.data?.message || "Error sending code");
     }

@@ -16,10 +16,10 @@ const EditMovie = () => {
         language: "",
         genre: "",
         imdbRating: "",
-        googleRating: "",
         poster: "",
         trailer: "",
-        suggestedToAll: false,
+        backdrop: "",
+    
     });
 
     const [loading, setLoading] = useState(true);
@@ -27,6 +27,7 @@ const EditMovie = () => {
 
     useEffect(() => {
         const fetchMovie = async () => {
+            setLoading(true);
             try {
                 const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/${id}`);
                 if (response.data) {
@@ -64,6 +65,7 @@ const EditMovie = () => {
             navigate("/movielist");
         } catch (err) {
             setError("Failed to update movie");
+            console.error(err); // Log error for debugging
         }
     };
 
@@ -100,10 +102,6 @@ const EditMovie = () => {
                             <input type="number" name="imdbRating" value={movie.imdbRating} onChange={handleChange} step="0.1" required />
                         </label>
 
-                        <label>Google Rating:
-                            <input type="number" name="googleRating" value={movie.googleRating} onChange={handleChange} step="0.1" required />
-                        </label>
-
                         <label>Poster URL:
                             <input type="text" name="poster" value={movie.poster} onChange={handleChange} required />
                         </label>
@@ -112,9 +110,8 @@ const EditMovie = () => {
                             <input type="text" name="trailer" value={movie.trailer} onChange={handleChange} required />
                         </label>
 
-                        <label>
-                            <input type="checkbox" name="suggestedToAll" checked={movie.suggestedToAll} onChange={handleChange} />
-                            Suggest to All
+                        <label>Backdrop URL:
+                            <input type="text" name="backdrop" value={movie.backdrop} onChange={handleChange} required />
                         </label>
 
                         <button type="submit">Update Movie</button>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "../Styles/moviedetail.css"; // Fixed import
+import "../Styles/moviedetail.css";
 
 export default function MovieDetails() {
     const { id } = useParams();

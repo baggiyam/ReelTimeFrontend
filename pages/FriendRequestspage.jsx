@@ -22,7 +22,7 @@ const FriendRequestPage = () => {
             const response = await axios.get("http://localhost:5002/api/friends/pending", {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log("Pending Requests:", response.data); // Debug log
+
             setPendingRequests(response.data);
         } catch (err) {
             console.error("Error fetching pending requests:", err.response?.data || err.message);
@@ -89,7 +89,7 @@ const FriendRequestPage = () => {
 
             // Remove the accepted request from the pending requests
             setPendingRequests((prev) => prev.filter((req) => req._id !== requestId));
-            fetchFriendList(); // Update the friend list
+            fetchFriendList();
 
             setMessage("Friend request accepted!");
             setError(null);
@@ -97,7 +97,7 @@ const FriendRequestPage = () => {
         } catch (err) {
             console.error("Error accepting friend request:", err.response?.data?.message || err.message);
             setError(err.response?.data?.message || "An error occurred while accepting the request.");
-            setMessage("");  // Clear any success message in case of error
+            setMessage("");
         }
     };
 
@@ -116,7 +116,7 @@ const FriendRequestPage = () => {
 
     return (
         <div className="friend-request-page">
-            {/* Send Friend Request Section */}
+
             <div className="section">
                 <h2>Send a Friend Request</h2>
                 <div className="input-container">
@@ -141,7 +141,7 @@ const FriendRequestPage = () => {
                 )}
             </div>
 
-            {/* Pending Friend Requests Section */}
+
             <div className="section">
                 <h2>Pending Friend Requests</h2>
                 {pendingRequests.length === 0 ? (
@@ -159,7 +159,6 @@ const FriendRequestPage = () => {
                 )}
             </div>
 
-            {/* Friend List Section */}
             <div className="section">
                 <h2>Your Friends</h2>
                 {friendList.length === 0 ? (

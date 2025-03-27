@@ -16,7 +16,7 @@ const AddMoviePage = () => {
         poster: "",
         trailer: "",
         backdrop: "",
-        voteCount: "",
+
     });
 
     const [popupMessage, setPopupMessage] = useState("");
@@ -67,7 +67,7 @@ const AddMoviePage = () => {
                 poster: movie.poster || "",
                 trailer: movie.trailer || "",
                 backdrop: movie.backdrop || "",
-                voteCount: movie.voteCount || "",
+
             });
 
             setIsFetched(true);
@@ -92,7 +92,7 @@ const AddMoviePage = () => {
             poster: "",
             trailer: "",
             backdrop: "",
-            voteCount: "",
+
         });
         setIsFetched(false);
         setFetchError(false);
@@ -126,7 +126,7 @@ const AddMoviePage = () => {
                 poster: "",
                 trailer: "",
                 backdrop: "",
-                voteCount: "",
+
             });
             setIsFetched(false);
             setFetchError(false);

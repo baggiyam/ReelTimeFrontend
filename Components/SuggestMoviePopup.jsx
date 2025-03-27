@@ -37,7 +37,7 @@ const SuggestMoviePopup = ({ movieId, friendId }) => {
         }
     };
 
-    // Handle friend selection (checkboxes)
+    // Handle friend selection 
     const handleFriendSelection = (e) => {
         const { value, checked } = e.target;
         setSelectedFriends((prevSelected) =>
@@ -77,9 +77,9 @@ const SuggestMoviePopup = ({ movieId, friendId }) => {
 
     // Reset friend selection on popup close
     const handleCancel = () => {
-        setSelectedFriends([]);  // Reset selection
+        setSelectedFriends([]);  
         if (typeof closePopup === "function") {
-            closePopup();  // Close only if valid
+            closePopup();  
         } else {
             console.warn("closePopup is not defined or is not a function");
         }
