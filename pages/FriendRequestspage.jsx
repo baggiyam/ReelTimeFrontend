@@ -19,7 +19,7 @@ const FriendRequestPage = () => {
 
     const fetchPendingRequests = async () => {
         try {
-            const response = await axios.get("http://localhost:5002/api/friends/pending", {
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/friends/pending`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -31,7 +31,7 @@ const FriendRequestPage = () => {
 
     const fetchFriendList = async () => {
         try {
-            const response = await axios.get("http://localhost:5002/api/friends/friendlist", {
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/friends/friendlist`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setFriendList(response.data);
@@ -45,7 +45,7 @@ const FriendRequestPage = () => {
     const handleFindUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`http://localhost:5002/api/auth/search/${receiver}`, {
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/auth/search/${receiver}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setUser(response.data.user);
@@ -65,7 +65,7 @@ const FriendRequestPage = () => {
         }
         try {
             const response = await axios.post(
-                "http://localhost:5002/api/friends/send",
+                `${import.meta.env.VITE_API_BASE_URL}/friends/send`,
                 { receiver: user.username },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -82,7 +82,7 @@ const FriendRequestPage = () => {
     const handleAcceptRequest = async (requestId) => {
         try {
             const response = await axios.post(
-                `http://localhost:5002/api/friends/accept/${requestId}`,
+                `${import.meta.env.VITE_API_BASE_URL}/friends/accept/${requestId}`,
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -104,7 +104,7 @@ const FriendRequestPage = () => {
     const handleRejectRequest = async (requestId) => {
         try {
             const response = await axios.post(
-                `http://localhost:5002/api/friends/reject/${requestId}`,
+                `${import.meta.env.VITE_API_BASE_URL}/friends/reject/${requestId}`,
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );
