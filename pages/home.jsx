@@ -12,7 +12,7 @@ const Home = () => {
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/movies/`)
             .then((response) => {
                 const movieData = response.data;
-                const sortedMovies = movieData.slice(-8).reverse();
+                const sortedMovies = movieData.slice(-10).reverse();
                 setMovies(sortedMovies);
             })
             .catch((error) => {

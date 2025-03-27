@@ -10,15 +10,16 @@ body {
 /* Homepage Styles */
 .Homepage {
     width: 100%;
+
     padding: 0 15px;
     margin-bottom:100px;
 }
 
 /* Hero Banner */
 .hero-banner {
-    height: 60vh;
+    height: 70vh;
     background-size: cover;
-    background-position: center;
+    background-position:relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,12 +80,14 @@ body {
 
 .app-features .intro-text {
     margin-bottom: 40px;
+
 }
 
 .app-features h1 {
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .app-features p {
